@@ -7,25 +7,11 @@ function reload(){
     window.location.reload();
 }
 
-async function fetchNews(query){
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+async function fetchNews(query, sortBy) {
+    const res = await fetch(`${url}${query}&sortBy=${sortBy}&apiKey=${API_KEY}`);
     const data = await res.json();
-    data.articles.sort((a, b) => {
-        // sort by date published
-        if (new Date(b.publishedAt) - new Date(a.publishedAt) !== 0) {
-            return new Date(b.publishedAt) - new Date(a.publishedAt);
-        }
-        // sort by relevancy to search keyword
-        if (b.title.toLowerCase().includes(query.toLowerCase()) && !a.title.toLowerCase().includes(query.toLowerCase())) {
-            return 1;
-        } else if (!b.title.toLowerCase().includes(query.toLowerCase()) && a.title.toLowerCase().includes(query.toLowerCase())) {
-            return -1;
-        }
-        // sort by popularity of source
-        return b.source.totalResults - a.source.totalResults;
-    });
     bindData(data.articles);
-}
+  }
 
 function  bindData(articles){
     const cardsContainer=document.getElementById("cards-container");
@@ -75,10 +61,12 @@ function onNavItemClick(id){
 const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search-text");
 
-searchButton.addEventListener("click",() => {
+searchButton.addEventListener("click", () => {
     const query = searchText.value;
-    if(!query) return;
-    fetchNews(query);
+    if (!query) return;
+    const sortSelect = document.getElementById("sort-select");
+    const sortBy = sortSelect.value;
+    fetchNews(query, sortBy);
     curSelectedNav?.classList.remove("active");
     curSelectedNav = null;
-});
+  });

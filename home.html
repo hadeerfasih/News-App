@@ -25,9 +25,16 @@
             <input id="search-text" type="text" class="news-input" placeholder="e.g. science">
             <button id="search-button" class="search-button">Search</button>
         </div>
+        <div class="sort-by">
+            <label for="sort-select">Sort By:</label>
+            <select id="sort-select">
+              <option value="publishedAt">Date Published</option>
+              <option value="relevancy">Relevancy to Keyword</option>
+              <option value="popularity">Popularity of Source</option>
+            </select>
+          </div>
 </div>
 </nav>
-
 
 
 <main>
@@ -48,6 +55,7 @@
         </div>
     </div>
 </template>
+
 <script src="script.js"></script>
 </body>
 </html>
