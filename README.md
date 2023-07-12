@@ -33,3 +33,7 @@ To view the full article, click on the article link at the bottom of the card.
 ## Credits
 
 This app was created by [Hadeer Shrif]. The News API was used to retrieve news articles. 
+
+## Video of the application on the drive
+
+https://drive.google.com/file/d/1KPmMmfamD9oqMfpdEtMUUuwW6ZXJSLXI/view?usp=drivesdk
